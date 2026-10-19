@@ -1,3 +1,10 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
 <title>ÉLAN Atelier</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1643,6 +1650,7 @@ render();
 (()=>{const ld=$("#loader"),bar=$("#loadBar"),t0=performance.now();
   if(reduce){ld.remove();return}
   document.documentElement.classList.add("is-loading");
+  setTimeout(()=>{ld.classList.add("done");document.documentElement.classList.remove("is-loading");setTimeout(()=>ld.isConnected&&ld.remove(),1600)},6000);
   const tick=()=>{const el=performance.now()-t0,need=route==="home"?40:0,pf=need?Math.min(1,loaded/need):1;
     bar.style.transform=`scaleX(${Math.min(1,Math.max(pf,el/4200))})`;
     if((el>1700&&pf>=1)||el>4500){ld.classList.add("done");document.documentElement.classList.remove("is-loading");setTimeout(()=>ld.remove(),1600);return}
@@ -1652,7 +1660,7 @@ render();
 if(grainURL&&!reduce){const g=document.createElement("div");g.className="pgrain";g.style.backgroundImage=`url(${grainURL})`;g.setAttribute("aria-hidden","true");document.body.appendChild(g)}
 
 /* ---------------- smooth scroll ---------------- */
-if(window.Lenis&&!reduce){try{lenis=new Lenis({lerp:.085,wheelMultiplier:.95,smoothWheel:true});document.documentElement.classList.add("lenis-on")}catch(e){lenis=null}}
+if(window.Lenis&&!reduce&&document.scrollingElement===document.documentElement){try{lenis=new Lenis({lerp:.085,wheelMultiplier:.95,smoothWheel:true});document.documentElement.classList.add("lenis-on")}catch(e){lenis=null}}
 
 /* ---------------- motion loop: velocity, marquee, skew, float, cursor ---------------- */
 let lastY=scrollY,vel=0;const fine=matchMedia("(pointer:fine)").matches;
@@ -1670,7 +1678,11 @@ if(fine&&!reduce){document.documentElement.classList.add("has-cur");
   addEventListener("pointerdown",()=>curEl.classList.add("down"));addEventListener("pointerup",()=>curEl.classList.remove("down"));
 }else curEl.remove();
 function loop(t){
-  if(lenis)lenis.raf(t);
+  requestAnimationFrame(loop);
+  if(lenis){try{lenis.raf(t)}catch(e){try{lenis.destroy()}catch(_){}lenis=null}}
+  try{motion(t)}catch(e){}
+}
+function motion(t){
   const y=scrollY;vel+=((y-lastY)-vel)*.12;lastY=y;
   if(route==="home"&&!reduce){
     if(mqVis){mqX+=0.6+Math.abs(vel)*.35;const w1=mqT1.scrollWidth/2,w2=mqT2.scrollWidth/2,d=vel<-.5?-1:1;
@@ -1681,8 +1693,11 @@ function loop(t){
   }
   if(fine&&curEl.isConnected&&Math.abs(vel)>.3&&window.__curTarget){const el=document.elementFromPoint(cm.tx,cm.ty);if(el)window.__curTarget(el,null)}
   if(fine&&curEl.isConnected){cm.x+=(cm.tx-cm.x)*.2;cm.y+=(cm.ty-cm.y)*.2;curEl.style.transform=`translate3d(${cm.x}px,${cm.y}px,0)`}
-  requestAnimationFrame(loop)}
+}
 requestAnimationFrame(loop);
 })();
 
 </script>
+
+</body>
+</html>
