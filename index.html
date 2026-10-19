@@ -1330,6 +1330,66 @@ body{overflow-x:clip}
 .ld__cap{left:0;right:0;transform:none;justify-content:center;top:calc(50% + clamp(170px,17vw,250px)*.68 + 22px)}
 @media (max-width:560px){.ld__cap{top:calc(50% + 46vw*.68 + 18px)}}
 @media (max-width:560px){.ld__word{font-size:22vw;letter-spacing:.04em}}
+
+/* =========================================================
+   Motion layer v2
+   ========================================================= */
+/* film captions: words rise in, sink out */
+.beat:not(.beat--hero) .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.beat:not(.beat--hero) .w>span{display:inline-block;transform:translateY(105%);transition:transform .9s cubic-bezier(.22,.8,.24,1);transition-delay:calc(var(--d,0)*38ms)}
+.beat.live .w>span{transform:none}
+.beat:not(.live) .w>span{transition-duration:.5s;transition-delay:0s;transform:translateY(-105%)}
+.beat:not(.beat--hero) .btn{transform:translateY(16px);opacity:0;transition:transform .9s .25s cubic-bezier(.22,.8,.24,1),opacity .6s .25s}
+.beat.live .btn{transform:none;opacity:1}
+
+/* page curtain: five fabric strips with the destination name */
+.curtain{background:transparent;transform:none;display:block}
+.curtain i{position:absolute;top:0;bottom:0;width:20.2%;background:var(--espresso);transform:translateY(101%)}
+.curtain i:nth-child(1){left:0}.curtain i:nth-child(2){left:20%}.curtain i:nth-child(3){left:40%}.curtain i:nth-child(4){left:60%}.curtain i:nth-child(5){left:80%}
+.curtain.run i{animation:strip 1.3s cubic-bezier(.76,0,.24,1) forwards}
+.curtain.run i:nth-child(2){animation-delay:.04s}.curtain.run i:nth-child(3){animation-delay:.08s}.curtain.run i:nth-child(4){animation-delay:.12s}.curtain.run i:nth-child(5){animation-delay:.16s}
+@keyframes strip{0%{transform:translateY(101%)}42%,56%{transform:translateY(0)}100%{transform:translateY(-101%)}}
+.curtain__label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;z-index:2;opacity:0}
+.curtain__label small{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--brass);margin-right:-.4em}
+.curtain__label span{font-family:var(--f-display);font-weight:300;font-size:clamp(46px,7vw,110px);line-height:1;color:var(--on-dark);letter-spacing:-.01em}
+.curtain>span{display:none}
+.curtain.run .curtain__label{animation:clabel 1.3s linear forwards}
+@keyframes clabel{0%,30%{opacity:0;transform:translateY(30px)}46%,58%{opacity:1;transform:none}74%,100%{opacity:0;transform:translateY(-30px)}}
+
+/* scroll-read highlight */
+.hl .w{overflow:visible}
+.hl .w>span{opacity:.2;transition:opacity .5s ease}
+.hl .w>span.on{opacity:1}
+.hl.split.pending .w>span{transform:none}
+
+/* parallax depth inside frames */
+img.plx{scale:1.14;will-change:translate}
+
+/* product card tilt */
+@media (hover:hover) and (pointer:fine){
+  .card__img{transition:clip-path 1.4s cubic-bezier(.76,0,.24,1),transform .7s cubic-bezier(.22,.8,.24,1);transform-style:preserve-3d}
+  .card:not(:hover) .card__img{transform:none!important}
+}
+
+/* link roll */
+.roll{display:inline-block;overflow:hidden;vertical-align:top;line-height:1.35;height:1.35em}
+.roll>span{display:inline-block;text-shadow:0 1.35em 0 currentColor;transition:transform .55s cubic-bezier(.76,0,.24,1)}
+a:hover>.roll>span,a:focus-visible>.roll>span{transform:translateY(-1.35em)}
+.nav a::after{bottom:-2px}
+
+/* button arrow loop */
+@keyframes arrowLoop{0%{transform:none;opacity:1}45%{transform:translateX(16px);opacity:0}46%{transform:translateX(-16px);opacity:0}100%{transform:none;opacity:1}}
+.btn:hover svg,.discover:hover svg,.linkbtn:hover svg,.mega__all:hover svg{animation:arrowLoop .7s cubic-bezier(.76,0,.24,1)}
+
+/* counters keep width steady */
+.values b,.specs b,.ministats b{font-variant-numeric:tabular-nums}
+
+@media (prefers-reduced-motion:reduce){
+  .beat .w>span{transform:none!important}
+  .beat .btn{opacity:1;transform:none}
+  .hl .w>span{opacity:1}
+  img.plx{scale:1}
+}
 </style>
 
 <header class="hdr" id="hdr">
@@ -1367,7 +1427,7 @@ body{overflow-x:clip}
   </div>
   <div class="ld__chalk" id="ldChalk"></div>
 </div>
-<div class="curtain" id="curtain" aria-hidden="true"><span>ÉLAN</span></div>
+<div class="curtain" id="curtain" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><div class="curtain__label"><small id="curtainKicker">Élan Atelier</small><span id="curtainTitle">ÉLAN</span></div></div>
 <div class="search" data-lenis-prevent id="search" role="dialog" aria-label="Search" aria-hidden="true">
   <div class="wrap search__in">
     <div class="search__top"><label for="sq" class="eyebrow">Search Élan</label><button class="search__close" id="sclose">Close <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 5l14 14M19 5 5 19"/></svg></button></div>
@@ -1611,6 +1671,10 @@ body{overflow-x:clip}
 <div class="toast" id="toast" role="status"></div>
 
 <div class="cur" id="cur" aria-hidden="true"><span id="curLabel"></span></div>
+<script>
+/* safety net: never leave the loading screen up, even if the main script fails */
+setTimeout(function(){var l=document.getElementById("loader");if(!l)return;document.documentElement.classList.remove("is-loading");l.classList.add("cut");setTimeout(function(){l.classList.add("open")},600);setTimeout(function(){l.parentNode&&l.parentNode.removeChild(l)},2000)},9500);
+</script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function(){
@@ -2301,6 +2365,30 @@ $("#igGrid").innerHTML=IG.map(([k,id],i)=>`<a class="ig__tile ig__t${i}" href="#
 hydrate($("#jtGrid"));hydrate($("#igGrid"));hydrate($("#svc"));
 $("#filmChapters").addEventListener("click",e=>{const b=e.target.closest("[data-jump]");if(!b)return;const f=$("#film");const y=f.offsetTop+(f.offsetHeight-innerHeight)*parseFloat(b.dataset.jump)+2;lenis?lenis.scrollTo(y,{duration:1.6}):scrollTo({top:y,behavior:"smooth"})});
 
+/* ---------------- motion: beats, highlight, parallax, count-up, tilt, link roll ---------------- */
+$$(".beat:not(.beat--hero) h2, .beat:not(.beat--hero) p, .beat:not(.beat--hero) .eyebrow",$("#home")).forEach(el=>splitNode(el,{n:0}));
+const FINE=matchMedia("(pointer:fine)").matches;
+let hlEls=[],plxEls=[],plxVis=new Set();
+const plxIO="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?plxVis.add(e.target):plxVis.delete(e.target)),{rootMargin:"100px"}):null;
+const PLX=".feature__img img,.look__img>img,.jfeat__img img,.svc__img img,.making__img img,.og__img img,.way__img img,.founder figure img,.article-hero img,.hand__img img,.philo__inset img,.jt__img img,.coll__media img";
+function motionSetup(root){
+  hlEls=$$(".manifesto p,.philo__copy p",root).map(el=>{if(!el.dataset.split){el.dataset.split="1";splitNode(el,{n:0})}el.classList.add("hl");return {el,w:$$(".w>span",el),last:-1}});
+  if(plxIO){plxEls.forEach(e=>plxIO.unobserve(e));plxVis.clear();plxEls=$$(PLX,root).filter(i=>!i.closest(".coll__media"));plxEls.forEach(e=>{e.classList.add("plx");plxIO.observe(e)})}
+  if("IntersectionObserver" in window){const cio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;cio.unobserve(e.target);countUp(e.target)}),{threshold:.6});
+    $$(".values b,.specs b,.ministats b",root).forEach(el=>{if(/^\d/.test(el.textContent.trim()))cio.observe(el)})}
+  if(FINE&&!reduce)$$(".nav a,.foot .col a,.mega li a",document).forEach(a=>{if(a.querySelector(".roll"))return;const t=a.firstChild;if(!t||t.nodeType!==3)return;const sp=document.createElement("span");sp.className="roll";const inner=document.createElement("span");inner.textContent=t.textContent;sp.appendChild(inner);a.replaceChild(sp,t)});
+}
+function countUp(el){if(reduce)return;const m=el.textContent.trim().match(/^([\d,]+)(.*)$/);if(!m)return;const end=parseInt(m[1].replace(/,/g,"")),suf=m[2],t0=performance.now(),D=1400;
+  const step=t=>{const k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3);el.textContent=Math.round(end*e).toLocaleString("en-IN")+suf;if(k<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
+function motionScroll(vh){
+  hlEls.forEach(h=>{const r=h.el.getBoundingClientRect();if(r.bottom<0||r.top>vh)return;const p=Math.min(1,Math.max(0,(vh*.82-r.top)/(r.height+vh*.3)));const n=Math.round(p*h.w.length);
+    if(n!==h.last){h.w.forEach((w,i)=>w.classList.toggle("on",i<n));h.last=n}});
+  if(!reduce)plxVis.forEach(img=>{const r=img.parentElement.getBoundingClientRect();const off=(r.top+r.height/2-vh/2)/vh;img.style.translate=`0 ${(-off*r.height*.07).toFixed(1)}px`});
+}
+if(FINE&&!reduce){document.addEventListener("pointermove",e=>{const c=e.target.closest&&e.target.closest(".card__img");
+  if(window.__tilt&&window.__tilt!==c){window.__tilt.style.transform="";window.__tilt=null}
+  if(c){const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateY(${(x*6).toFixed(2)}deg) rotateX(${(-y*6).toFixed(2)}deg)`;window.__tilt=c}},{passive:true})}
+
 /* ---------------- router ---------------- */
 let route="home",current=null;
 const home=$("#home"),page=$("#page"),rail=$("#rail");
@@ -2321,10 +2409,11 @@ function render(){
   $("#readbar").classList.remove("on");if(!isHome){page.innerHTML=v.html;hydrate(page);grain(page);v.mount&&v.mount(page)}
   target.classList.remove("view-enter");void target.offsetWidth;target.classList.add("view-enter");
   lenis?lenis.scrollTo(0,{immediate:true,force:true}):window.scrollTo({top:0,behavior:"instant"});
-  splitAll(target);reveals(target);parEls=isHome?[]:$$("[data-par]",page);if(isHome){sizeCanvas();sizeLB()}frame();
+  splitAll(target);motionSetup(target);reveals(target);parEls=isHome?[]:$$("[data-par]",page);if(isHome){sizeCanvas();sizeLB()}frame();
 }
 addEventListener("hashchange",()=>{closeSearch();closeMega();if(reduce){render();return}
-  const c=$("#curtain");c.classList.remove("run");void c.offsetWidth;c.classList.add("run");setTimeout(render,560)});
+  const c=$("#curtain"),dest=parse();$("#curtainTitle").textContent=dest.v?dest.v.title:"ÉLAN";$("#curtainKicker").textContent=dest.v?"Élan Atelier":"Home";
+  c.classList.remove("run");void c.offsetWidth;c.classList.add("run");setTimeout(render,640)});
 
 /* ---------------- scroll scenes ---------------- */
 const hdr=$("#hdr"),hero=$("#film",home);
@@ -2373,8 +2462,8 @@ function filmScroll(vh){
   let label=null;
   beats.forEach(b=>{const f=+b.dataset.from,t=+b.dataset.to,fd=.025;
     const o=Math.max(0,Math.min(1,(p-f)/fd,(t-p)/fd));
-    b.style.opacity=o;b.style.transform=(innerWidth>560?"translateY(-50%) ":"")+`translateY(${(1-o)*24}px)`;
-    b.classList.toggle("is-on",o>.05);if(o>.5)label=b.dataset.label});
+    b.style.opacity=Math.min(1,o*1.6);b.style.transform=(innerWidth>560?"translateY(-50%) ":"")+`translateY(${(1-o)*10}px)`;
+    b.classList.toggle("is-on",o>.05);b.classList.toggle("live",o>.35);if(o>.5)label=b.dataset.label});
   return label;
 }
 addEventListener("resize",sizeCanvas);sizeCanvas();
@@ -2385,7 +2474,7 @@ const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
 let ticking=false;
 let parEls=[];const speedEls=[...document.querySelectorAll("#home [data-speed]")];
 function frame(){
-  ticking=false;const y=scrollY,vh=innerHeight;
+  ticking=false;const y=scrollY,vh=innerHeight;motionScroll(vh);
   hdr.classList.toggle("scrolled",y>40);
   if(route!=="home"){
     if(current&&current.onScroll)current.onScroll(vh);
