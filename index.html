@@ -858,6 +858,88 @@ html.has-cur input,html.has-cur select{cursor:auto}
   [data-reveal].pending{clip-path:none!important}
   .pgrain{display:none}
 }
+
+/* ---------- Performance pass ---------- */
+.sun,.film .grain,.edit .grain,.craft__media .grain{display:none}
+.hdr.solid{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--ivory)}
+.cur{mix-blend-mode:normal}
+.cur::before{background:var(--brass);box-shadow:0 0 0 1px rgba(242,236,226,.6)}
+.cur.link::before{transform:scale(3.2);background:rgba(168,138,92,.18);box-shadow:inset 0 0 0 .5px var(--brass)}
+.qa{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--ivory)}
+.edit__img{opacity:1!important}
+
+/* ---------- Fuller home ---------- */
+.film{height:470vh}
+@media (max-width:560px){.film{height:420vh}}
+.film__ui{align-items:flex-end;gap:20px}
+.film__chapters{display:flex;gap:4px;padding:6px;border:1px solid rgba(239,231,218,.18);background:rgba(27,20,14,.35)}
+.film__chapters button{display:flex;align-items:baseline;gap:8px;padding:8px 12px;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--on-dark-dim);transition:color .4s,background .4s}
+.film__chapters button i{font-style:normal;font-family:var(--f-display);font-size:14px;letter-spacing:.04em;color:var(--brass)}
+.film__chapters button:hover{color:var(--on-dark)}
+.film__chapters button.on{background:var(--on-dark);color:var(--espresso)}
+@media (max-width:1100px){.film__chapters{display:none}}
+
+.pillars{padding-block:28px 30px}
+.philo{padding-block:clamp(32px,4.5vw,70px)}
+.dress{padding-block:clamp(36px,5vw,76px) clamp(30px,4vw,56px)}
+.craft{padding-block:clamp(24px,3vw,48px) clamp(44px,6vw,84px)}
+.look{padding-block:clamp(32px,5vw,72px)}
+.cidx{padding-block:clamp(54px,7vw,104px)}
+
+.svc{background:var(--espresso);color:var(--on-dark)}
+.svc__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,6vw,96px);align-items:center;padding-block:clamp(60px,8vw,120px)}
+.svc__img{margin:0;position:relative;overflow:hidden}
+.svc__img img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 40%}
+.svc__img figcaption{position:absolute;left:14px;bottom:12px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--on-dark)}
+.svc__copy{display:flex;flex-direction:column;gap:22px;min-width:0}
+.svc__copy .eyebrow{color:var(--brass)}
+.svc h2{font-size:clamp(42px,4.8vw,72px)}
+.svc h2 em{font-style:italic;color:var(--stone)}
+.svc__list{list-style:none;margin:6px 0 4px;padding:0;border-top:1px solid rgba(239,231,218,.16)}
+.svc__list li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding-block:20px;border-bottom:1px solid rgba(239,231,218,.16)}
+.svc__list b{font-family:var(--f-display);font-weight:300;font-size:30px;line-height:1;color:var(--brass)}
+.svc__list h3{font-family:var(--f-display);font-weight:400;font-size:26px;margin:0 0 6px}
+.svc__list p{margin:0;font-size:14px;color:var(--on-dark-dim);max-width:46ch}
+.svc .btn{align-self:flex-start}
+.svc__img[data-reveal]{transition:clip-path 1.6s cubic-bezier(.76,0,.24,1);clip-path:inset(0)}
+.svc__img[data-reveal].pending{opacity:1;transform:none;clip-path:inset(100% 0 0 0)}
+
+.jt{padding-block:clamp(64px,8vw,120px) clamp(40px,5vw,72px)}
+.jt__head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:28px;margin-bottom:32px;border-bottom:1px solid var(--stone)}
+.jt__head .eyebrow{color:var(--taupe);display:block;margin-bottom:12px}
+.jt__head h2{font-size:clamp(40px,4.6vw,68px)}
+.jt__head h2 em{font-style:italic;color:var(--taupe)}
+.jt__grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(18px,2.4vw,36px);align-items:start}
+.jt__card{display:flex;flex-direction:column;gap:12px}
+.jt__img{overflow:hidden;background:var(--linen)}
+.jt__img img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform 1.4s var(--ease)}
+.jt__card:first-child .jt__img img{aspect-ratio:4/3.6}
+.jt__card:hover .jt__img img{transform:scale(1.05)}
+.jt__card h3{font-size:clamp(24px,2.2vw,32px);font-weight:400}
+.jt__card p{margin:0;font-size:13.5px;color:#4a3f33}
+
+.ig{padding-block:clamp(30px,4vw,60px) clamp(70px,9vw,130px)}
+.ig__head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:22px}
+.ig__head .eyebrow{font-family:var(--f-display);font-size:clamp(28px,3vw,42px);letter-spacing:.02em;text-transform:none;color:var(--ink)}
+.ig__head p{margin:0;color:var(--taupe);font-size:13px}
+.ig__grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(130px,13vw,210px);gap:8px;padding-inline:8px}
+.ig__tile{position:relative;overflow:hidden;background:var(--linen)}
+.ig__tile img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter .6s}
+.ig__tile span{position:absolute;inset:auto 0 0 0;padding:12px 14px;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--on-dark);background:linear-gradient(transparent,rgba(27,20,14,.6));opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s var(--ease)}
+.ig__tile:hover img{transform:scale(1.06)}
+.ig__tile:hover span{opacity:1;transform:none}
+.ig__t0{grid-column:span 2;grid-row:span 2}.ig__t1{grid-row:span 2}.ig__t2{grid-row:span 2}.ig__t3{grid-column:span 2;grid-row:span 2}
+.ig__t4{grid-column:span 2}.ig__t5{grid-column:span 2}.ig__t6{grid-column:span 2}
+@media (max-width:899px){
+  .svc__in{grid-template-columns:1fr}
+  .jt__grid{grid-template-columns:1fr}
+  .jt__head{flex-direction:column;align-items:flex-start}
+  .ig__grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:44vw}
+  .ig__t0,.ig__t3{grid-column:span 2;grid-row:span 1}.ig__t1,.ig__t2{grid-row:span 1}.ig__t4,.ig__t5,.ig__t6{grid-column:span 1}
+  .ig__t6{grid-column:span 2}
+  .ig__tile span{opacity:1;transform:none}
+  .ig__head{flex-direction:column}
+}
 </style>
 
 <header class="hdr" id="hdr">
@@ -907,34 +989,34 @@ html.has-cur input,html.has-cur select{cursor:auto}
       <div class="film__shade"></div>
       <div class="grain"></div>
       <div class="wrap film__copy">
-        <div class="beat beat--hero is-on" data-from="-1" data-to=".13" data-label="The Editorial Reveal">
+        <div class="beat beat--hero is-on" data-from="-1" data-to=".14" data-label="The Editorial Reveal">
           <span class="eyebrow">The Autumn / Winter Edit</span>
           <h1><span class="line"><span>A Study in</span></span><span class="line"><span>Quiet Luxury.</span></span></h1>
           <p>Considered pieces. Exceptional materials. Made to move with you.</p>
           <a class="btn btn--light" href="#ready-to-wear">Explore the Collection <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor"><path d="M0 5h16M12 1l4 4-4 4"/></svg></a>
         </div>
-        <div class="beat" data-from=".15" data-to=".25" data-label="Material Focus">
+        <div class="beat" data-from=".16" data-to=".31" data-label="Material Focus">
           <span class="eyebrow">Exceptional fabrics</span>
           <h2>Silk that moves<br><em>like light.</em></h2>
           <p>Pleated silk charmeuse, woven in Varanasi and finished by hand.</p>
         </div>
-        <div class="beat" data-from=".28" data-to=".40" data-label="Made to Move">
+        <div class="beat" data-from=".34" data-to=".48" data-label="Made to Move">
           <span class="eyebrow">In motion</span>
           <h2>Made to move<br><em>with you.</em></h2>
           <p>Cut long and released at the hem, so every step carries the cloth with it.</p>
         </div>
-        <div class="beat" data-from=".52" data-to=".63" data-label="The Collection Emerges">
+        <div class="beat" data-from=".51" data-to=".66" data-label="The Collection Emerges">
           <span class="eyebrow">The Art of Dressing</span>
           <h2>A wardrobe of<br><em>enduring forms.</em></h2>
           <a class="btn btn--light" href="#ready-to-wear">Shop Ready to Wear <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor"><path d="M0 5h16M12 1l4 4-4 4"/></svg></a>
         </div>
-        <div class="beat" data-from=".70" data-to=".80" data-label="The Column Coat">
+        <div class="beat" data-from=".69" data-to=".84" data-label="The Column Coat">
           <span class="eyebrow">Piece of the week · ₹ 68,000</span>
           <h2>The Column<br><em>Coat.</em></h2>
           <p>Heavy Biella melton. Forty-two hours at the bench.</p>
           <a class="btn btn--light" href="#piece-column">Discover the coat <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor"><path d="M0 5h16M12 1l4 4-4 4"/></svg></a>
         </div>
-        <div class="beat" data-from=".88" data-to="2" data-label="The Autumn Edit">
+        <div class="beat" data-from=".87" data-to="2" data-label="The Autumn Edit">
           <span class="eyebrow">AW 2026</span>
           <h2>The Autumn /<br><em>Winter Edit.</em></h2>
           <a class="btn btn--light" href="#collections">View the Edit <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor"><path d="M0 5h16M12 1l4 4-4 4"/></svg></a>
@@ -942,7 +1024,8 @@ html.has-cur input,html.has-cur select{cursor:auto}
       </div>
       <div class="film__ui">
         <div class="scroll-cue" id="scrollCue"><span class="mouse"></span>SCROLL</div>
-        <div class="film__meta"><span id="filmScene">01 / 05</span><span class="film__load" id="filmLoad">Loading film 0%</span></div>
+        <div class="film__chapters" id="filmChapters"><button data-jump="0"><i>01</i>The reveal</button><button data-jump=".235"><i>02</i>Silk</button><button data-jump=".41"><i>03</i>In motion</button><button data-jump=".585"><i>04</i>The wardrobe</button><button data-jump=".765"><i>05</i>The coat</button><button data-jump=".95"><i>06</i>The edit</button></div>
+      <div class="film__meta"><span id="filmScene">01 / 05</span><span class="film__load" id="filmLoad">Loading film 0%</span></div>
       </div>
       <div class="film__progress"><i id="filmBar"></i></div>
     </div>
@@ -1030,6 +1113,22 @@ html.has-cur input,html.has-cur select{cursor:auto}
     </div>
   </section>
 
+  <section class="svc" id="svc" data-chapter="The Atelier">
+    <div class="wrap svc__in">
+      <figure class="svc__img" data-reveal><img data-img="fitting-pin" alt="A tailor pinning the shoulder of an ivory jacket during a private fitting"><figcaption>Private fitting · Jaipur atelier</figcaption></figure>
+      <div class="svc__copy">
+        <span class="eyebrow" data-reveal>The atelier, at your service</span>
+        <h2 data-reveal style="--i:1">Made for you,<br><em>and kept for life.</em></h2>
+        <ul class="svc__list">
+          <li data-reveal style="--i:2"><b>01</b><div><h3>Private fittings</h3><p>Ninety minutes with a cutter in Jaipur or Mumbai. Two fittings for every Atelier Line piece.</p></div></li>
+          <li data-reveal style="--i:3"><b>02</b><div><h3>Complimentary alterations</h3><p>Hems, sleeves and waists adjusted by hand within the first year, at no cost.</p></div></li>
+          <li data-reveal style="--i:4"><b>03</b><div><h3>Ten-year repairs</h3><p>Bring any Élan piece back and we mend it free for a decade. Buttons, seams, linings.</p></div></li>
+        </ul>
+        <a class="btn btn--light" href="#our-story" data-reveal style="--i:5">Visit the atelier <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor"><path d="M0 5h16M12 1l4 4-4 4"/></svg></a>
+      </div>
+    </div>
+  </section>
+
   <section class="lb" id="lb" data-chapter="The Lookbook">
     <div class="lb__stick">
       <div class="wrap lb__head"><div><span class="eyebrow">AW 2026 Lookbook</span><h2>Eight looks,<br><em>one colonnade.</em></h2></div><span class="lb__count" id="lbCount">01 / 08</span></div>
@@ -1042,6 +1141,16 @@ html.has-cur input,html.has-cur select{cursor:auto}
     <div class="cidx__head"><span class="eyebrow">The Collections</span><span class="eyebrow">Four, made to be worn together</span></div>
     <ol class="cidx__list" id="cidxList"></ol>
     <div class="cidx__float" id="cidxFloat" aria-hidden="true"></div>
+  </section>
+
+  <section class="wrap jt" id="jt" data-chapter="The Journal">
+    <div class="jt__head"><div><span class="eyebrow" data-reveal>From the Journal</span><h2 data-reveal style="--i:1">Notes from<br><em>the cutting room.</em></h2></div><a class="btn btn--dark" href="#journal" data-reveal style="--i:2">All stories <svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor"><path d="M0 5h16M12 1l4 4-4 4"/></svg></a></div>
+    <div class="jt__grid" id="jtGrid"></div>
+  </section>
+
+  <section class="ig" id="ig" data-chapter="#ÉlanAtelier">
+    <div class="wrap ig__head"><span class="eyebrow" data-reveal>#ÉlanAtelier</span><p data-reveal style="--i:1">Worn in the colonnade, the studio and the street.</p></div>
+    <div class="ig__grid" id="igGrid"></div>
   </section>
 
   <section class="edit" id="edit" data-chapter="The Autumn Edit">
@@ -1528,7 +1637,7 @@ function splitNode(node,st){
       n.replaceWith(frag)}
     else if(n.nodeType===1&&n.tagName!=="BR"&&!n.classList.contains("line"))splitNode(n,st)})}
 function splitAll(root){
-  $$(".phead h1, .dhead h1, .philo h2, .dress__head h2, .craft h2, .edit h2, .look h2, .lb__head h2, .feature__copy h2, .coll__copy h2, .process__intro h2, .section-title h2, .jfeat h2, .article h1, .closing blockquote, .manifesto p",root).forEach(el=>{
+  $$(".phead h1, .dhead h1, .philo h2, .dress__head h2, .craft h2, .edit h2, .look h2, .lb__head h2, .feature__copy h2, .coll__copy h2, .process__intro h2, .section-title h2, .jfeat h2, .article h1, .closing blockquote, .manifesto p, .svc h2, .jt__head h2",root).forEach(el=>{
     if(el.dataset.split)return;el.dataset.split="1";el.classList.add("split");if(!el.hasAttribute("data-reveal"))el.setAttribute("data-reveal","");splitNode(el,{n:0})})}
 
 /* ---------------- manifesto marquee ---------------- */
@@ -1551,6 +1660,13 @@ cidxList.addEventListener("pointermove",e=>{const r=$("#cidx").getBoundingClient
     $$("[data-ci]",cidxList).forEach(x=>x.classList.toggle("on",x===a));$$(".cf",cidxFloat).forEach(x=>x.classList.toggle("on",x.dataset.cf===a.dataset.ci))}});
 cidxList.addEventListener("pointerleave",()=>{cf.on=false;cidxFloat.classList.remove("on");cidxList.classList.remove("hovering");$$("[data-ci]",cidxList).forEach(x=>x.classList.remove("on"))});
 
+/* ---------------- journal teaser + mosaic ---------------- */
+$("#jtGrid").innerHTML=A.slice(0,3).map((a,i)=>`<a class="jt__card" href="#article-${a.id}" data-reveal style="--i:${i}"><div class="jt__img">${img(a.img,a.t,a.pos)}</div><div class="jmeta"><b>${a.k}</b><span>${a.min} min read</span></div><h3>${a.t}</h3><p>${a.dek}</p></a>`).join("");
+const IG=[["column-walk","column"],["wrap-model2","wrap"],["blouse-model","blouse"],["coat-model","coat"],["silk-drape","skirt"],["shawl-model","shawl"],["suit-model","suit"]];
+$("#igGrid").innerHTML=IG.map(([k,id],i)=>`<a class="ig__tile ig__t${i}" href="#piece-${id}" data-reveal style="--i:${i%4}">${img(k,`${byId[id].n} as worn`,"50% 30%")}<span>Shop ${byId[id].n}</span></a>`).join("");
+hydrate($("#jtGrid"));hydrate($("#igGrid"));hydrate($("#svc"));
+$("#filmChapters").addEventListener("click",e=>{const b=e.target.closest("[data-jump]");if(!b)return;const f=$("#film");const y=f.offsetTop+(f.offsetHeight-innerHeight)*parseFloat(b.dataset.jump)+2;lenis?lenis.scrollTo(y,{duration:1.6}):scrollTo({top:y,behavior:"smooth"})});
+
 /* ---------------- router ---------------- */
 let route="home",current=null;
 const home=$("#home"),page=$("#page"),rail=$("#rail");
@@ -1571,7 +1687,7 @@ function render(){
   if(!isHome){page.innerHTML=v.html;hydrate(page);grain(page);v.mount&&v.mount(page)}
   target.classList.remove("view-enter");void target.offsetWidth;target.classList.add("view-enter");
   lenis?lenis.scrollTo(0,{immediate:true,force:true}):window.scrollTo({top:0,behavior:"instant"});
-  splitAll(target);reveals(target);if(isHome){sizeCanvas();sizeLB()}frame();
+  splitAll(target);reveals(target);parEls=isHome?[]:$$("[data-par]",page);if(isHome){sizeCanvas();sizeLB()}frame();
 }
 addEventListener("hashchange",()=>{closeSearch();closeMega();if(reduce){render();return}
   const c=$("#curtain");c.classList.remove("run");void c.offsetWidth;c.classList.add("run");setTimeout(render,560)});
@@ -1583,7 +1699,7 @@ const SCENES=5,KEEP=[...Array(96)].map((_,i)=>i+1).filter(n=>n%6!==0),PER=KEEP.l
 const cv=$("#filmCanvas"),cx=cv.getContext("2d"),frames=new Array(TOTAL),ok=new Uint8Array(TOTAL),beats=$$(".beat",home);
 const src=i=>`frames/s${Math.floor(i/PER)+1}/${String(KEEP[i%PER]).padStart(3,"0")}.webp`;
 let loaded=0,shownKey="",target=0,cur=0,filmRAF=null;
-function sizeCanvas(){const r=cv.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,1.6);cv.width=Math.round(r.width*d);cv.height=Math.round(r.height*d);shownKey="";drawFrame(cur)}
+function sizeCanvas(){const r=cv.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,1);cv.width=Math.round(r.width*d);cv.height=Math.round(r.height*d);shownKey="";drawFrame(cur)}
 function near(i){for(let k=0;k<TOTAL;k++){if(i-k>=0&&ok[i-k])return i-k;if(i+k<TOTAL&&ok[i+k])return i+k}return -1}
 function paint(im){const cw=cv.width,ch=cv.height,s=Math.max(cw/im.naturalWidth,ch/im.naturalHeight),w=im.naturalWidth*s,h=im.naturalHeight*s;cx.drawImage(im,(cw-w)/2,(ch-h)/2,w,h)}
 function drawFrame(f){
@@ -1598,7 +1714,7 @@ function drawFrame(f){
 function loadFrame(i){return new Promise(res=>{const im=new Image();im.decoding="async";
   const done=()=>{loaded++;const l=$("#filmLoad");if(l){l.textContent=`Loading film ${Math.round(loaded/TOTAL*100)}%`;if(loaded>=TOTAL)l.classList.add("done")}
     if(Math.abs(i-cur)<3){shownKey="";drawFrame(cur)}res()};
-  im.onload=()=>{ok[i]=1;done()};im.onerror=done;im.src=src(i);frames[i]=im})}
+  im.onerror=done;im.src=src(i);frames[i]=im;(im.decode?im.decode():new Promise((r,x)=>{im.onload=r;im.onerror=x})).then(()=>{ok[i]=1;done()},()=>{})})}
 (async function preload(){
   const want=new Set(Array.from({length:TOTAL},(_,i)=>i));
   const first=[0,1,2,3,4,5,6,7];for(let i=0;i<TOTAL;i+=20)first.push(i);
@@ -1612,12 +1728,14 @@ function filmTick(){
   cur+=(target-cur)*0.16;if(Math.abs(target-cur)<.02)cur=target;
   drawFrame(cur);
   filmRAF=cur!==target?requestAnimationFrame(filmTick):null}
+const fBar=$("#filmBar"),fScene=$("#filmScene"),fCue=$("#scrollCue"),fChaps=$$("#filmChapters button");let lastScene="",lastCue=-1,lastCi=-1;
 function filmScroll(vh){
   const r=hero.getBoundingClientRect(),len=hero.offsetHeight-vh,p=Math.min(1,Math.max(0,-r.top/len));
   target=p*(TOTAL-1);if(!filmRAF)filmRAF=requestAnimationFrame(filmTick);
-  $("#filmBar").style.transform=`scaleX(${p})`;
-  $("#filmScene").textContent=`0${Math.min(SCENES,Math.floor(p*SCENES)+1)} / 0${SCENES}`;
-  $("#scrollCue").style.opacity=p>.02?0:1;
+  fBar.style.transform=`scaleX(${p})`;
+  const ci=p<.155?0:p<.325?1:p<.495?2:p<.675?3:p<.855?4:5;if(ci!==lastCi){fChaps.forEach((b,k)=>b.classList.toggle("on",k===ci));lastCi=ci}
+  const sc=`0${Math.min(SCENES,Math.floor(p*SCENES)+1)} / 0${SCENES}`;if(sc!==lastScene){fScene.textContent=sc;lastScene=sc}
+  const cu=p>.02?0:1;if(cu!==lastCue){fCue.style.opacity=cu;lastCue=cu}
   let label=null;
   beats.forEach(b=>{const f=+b.dataset.from,t=+b.dataset.to,fd=.025;
     const o=Math.max(0,Math.min(1,(p-f)/fd,(t-p)/fd));
@@ -1631,28 +1749,29 @@ const chapters=[...$$("[data-chapter]",home),$("footer")];
 const pct=$("#railPct"),nm=$("#railName"),bar=$("#railBar");
 const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
 let ticking=false;
+let parEls=[];const speedEls=[...document.querySelectorAll("#home [data-speed]")];
 function frame(){
   ticking=false;const y=scrollY,vh=innerHeight;
   hdr.classList.toggle("scrolled",y>40);
   if(route!=="home"){
     const dh=$(".dhead",page);hdr.classList.toggle("solid",!dh||y>dh.offsetHeight-80);
-    if(!reduce)$$("[data-par]",page).forEach(el=>{const b=el.parentElement.getBoundingClientRect();const off=b.top+b.height/2-vh/2;el.style.transform=`translate3d(0,${off*-parseFloat(el.dataset.par)}px,0)${el.closest(".coll__media")?" scale(1.12)":""}`});
+    if(!reduce)parEls.forEach(el=>{const b=el.parentElement.getBoundingClientRect();const off=b.top+b.height/2-vh/2;el.style.transform=`translate3d(0,${off*-parseFloat(el.dataset.par)}px,0)${el.closest(".coll__media")?" scale(1.12)":""}`});
     return}
   hdr.classList.toggle("solid",y>hero.offsetHeight-80);
   const filmLabel=filmScroll(vh);
   lbScroll(vh);
   const p=clamp(y/(document.documentElement.scrollHeight-vh));
-  pct.textContent=Math.round(p*100)+"%";bar.style.transform=`scaleY(${p})`;
+  if(innerWidth>1480){pct.textContent=Math.round(p*100)+"%";bar.style.transform=`scaleY(${p})`;
   let ch=chapters[0];for(const c of chapters){if(c.getBoundingClientRect().top<vh*.55)ch=c}
-  const lbl=(ch===hero&&filmLabel)?filmLabel:ch.dataset.chapter;if(nm.textContent!==lbl)nm.textContent=lbl;
+  const lbl=(ch===hero&&filmLabel)?filmLabel:ch.dataset.chapter;if(nm.textContent!==lbl)nm.textContent=lbl}
   if(reduce)return;
-  const r=philo.getBoundingClientRect();const t=clamp((vh-r.top)/(vh*.75));
-  philo.style.clipPath=`inset(0 ${(1-t)*34}% 0 0)`;
-  $$("[data-speed]",home).forEach(el=>{const b=el.getBoundingClientRect();const off=(b.top+b.height/2-vh/2);el.style.transform=`translate3d(0,${off*parseFloat(el.dataset.speed)}px,0)`});
-  const cr=craftImg.getBoundingClientRect();const ct=clamp((vh-cr.top)/(vh+cr.height));
-  craftImg.style.transform=`scale(${1.25-ct*.2}) translateX(${(ct-.5)*-4}%)`;
-  const er=edit.getBoundingClientRect();const et=clamp((vh-er.top)/(vh+er.height));
-  editImg.style.opacity=clamp(.25+et*1.8);editImg.style.transform=`translate3d(0,${(et-.5)*-14}%,0) scale(${1.12-et*.1})`;
+  const r=philo.getBoundingClientRect();if(r.top<vh&&r.bottom>0){const t=clamp((vh-r.top)/(vh*.75));
+  philo.style.clipPath=`inset(0 ${(1-t)*34}% 0 0)`}
+  speedEls.forEach(el=>{const b=el.getBoundingClientRect();const off=(b.top+b.height/2-vh/2);el.style.transform=`translate3d(0,${off*parseFloat(el.dataset.speed)}px,0)`});
+  const cr=craftImg.getBoundingClientRect();if(cr.top<vh&&cr.bottom>0){const ct=clamp((vh-cr.top)/(vh+cr.height));
+  craftImg.style.transform=`scale(${1.25-ct*.2}) translateX(${(ct-.5)*-4}%)`}
+  const er=edit.getBoundingClientRect();if(er.top<vh&&er.bottom>0){const et=clamp((vh-er.top)/(vh+er.height));
+  editImg.style.transform=`translate3d(0,${(et-.5)*-10}%,0) scale(${1.1-et*.08})`}
 }
 addEventListener("scroll",()=>{if(!ticking){ticking=true;requestAnimationFrame(frame)}},{passive:true});
 addEventListener("resize",frame);
@@ -1668,14 +1787,11 @@ render();
     if((el>1700&&pf>=1)||el>4500){ld.classList.add("done");document.documentElement.classList.remove("is-loading");setTimeout(()=>ld.remove(),1600);return}
     requestAnimationFrame(tick)};requestAnimationFrame(tick)})();
 
-/* ---------------- page grain ---------------- */
-if(grainURL&&!reduce){const g=document.createElement("div");g.className="pgrain";g.style.backgroundImage=`url(${grainURL})`;g.setAttribute("aria-hidden","true");document.body.appendChild(g)}
-
 /* ---------------- smooth scroll ---------------- */
-if(window.Lenis&&!reduce&&document.scrollingElement===document.documentElement){try{lenis=new Lenis({lerp:.085,wheelMultiplier:.95,smoothWheel:true});document.documentElement.classList.add("lenis-on")}catch(e){lenis=null}}
+if(window.Lenis&&!reduce&&document.scrollingElement===document.documentElement){try{lenis=new Lenis({lerp:.13,wheelMultiplier:1,smoothWheel:true});document.documentElement.classList.add("lenis-on")}catch(e){lenis=null}}
 
 /* ---------------- motion loop: velocity, marquee, skew, float, cursor ---------------- */
-let lastY=scrollY,vel=0;const fine=matchMedia("(pointer:fine)").matches;
+let lastY=scrollY,vel=0,hitN=0,lastSk="";const fine=matchMedia("(pointer:fine)").matches;
 const curEl=$("#cur"),curL=$("#curLabel"),cm={x:-100,y:-100,tx:-100,ty:-100};
 const CMAP=[[".card__img a,.lb__item,.sitem,.post,.jfeat,.feature__img,.mega__feat a,.mega__colls a,.coll__thumbs a,.drops a","View"],["#film","Scroll"],[".cidx a","Shop"],[".pdp__media .main","Zoom"],[".hot","Open"]];
 if(fine&&!reduce){document.documentElement.classList.add("has-cur");
@@ -1699,11 +1815,11 @@ function motion(t){
   if(route==="home"&&!reduce){
     if(mqVis){mqX+=0.6+Math.abs(vel)*.35;const w1=mqT1.scrollWidth/2,w2=mqT2.scrollWidth/2,d=vel<-.5?-1:1;
       mqT1.style.transform=`translate3d(${-((mqX*d)%w1+w1)%w1}px,0,0)`;mqT2.style.transform=`translate3d(${(((mqX*.8*d)%w2+w2)%w2)-w2}px,0,0)`}
-    if(lbDist)lbTrack.style.setProperty("--sk",`${Math.max(-6,Math.min(6,vel*.12))}deg`);
+    if(lbDist){const sk=(Math.round(Math.max(-6,Math.min(6,vel*.12))*4)/4)+"deg";if(sk!==lastSk){lbTrack.style.setProperty("--sk",sk);lastSk=sk}}
     if(cf.on||cidxFloat.classList.contains("on")){const dx=cf.tx-cf.x;cf.x+=dx*.14;cf.y+=(cf.ty-cf.y)*.14;cf.rot+=((Math.max(-12,Math.min(12,dx*.08)))-cf.rot)*.1;
       cidxFloat.style.transform=`translate3d(${cf.x}px,${cf.y}px,0) translate(-50%,-50%) rotate(${cf.rot}deg)`}
   }
-  if(fine&&curEl.isConnected&&Math.abs(vel)>.3&&window.__curTarget){const el=document.elementFromPoint(cm.tx,cm.ty);if(el)window.__curTarget(el,null)}
+  if(fine&&curEl.isConnected&&Math.abs(vel)>.3&&window.__curTarget&&(++hitN%8===0)){const el=document.elementFromPoint(cm.tx,cm.ty);if(el)window.__curTarget(el,null)}
   if(fine&&curEl.isConnected){cm.x+=(cm.tx-cm.x)*.2;cm.y+=(cm.ty-cm.y)*.2;curEl.style.transform=`translate3d(${cm.x}px,${cm.y}px,0)`}
 }
 requestAnimationFrame(loop);
